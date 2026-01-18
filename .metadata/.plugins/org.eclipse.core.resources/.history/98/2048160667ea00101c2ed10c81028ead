@@ -1,0 +1,105 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import dao.VideoDAO;
+import modal.Video;
+import modal.GenreVideo;
+
+@WebServlet("/Addvideo")
+public class AddvideoController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getContentLength() <= 0) {
+			ArrayList<GenreVideo> listGenre = new VideoDAO().getAllGenre();
+			request.setAttribute("listgenre", listGenre);
+			request.getRequestDispatcher("AddVideo.jsp").forward(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getContentLength() <= 0) {
+			doGet(request, response);
+			return;
+		}
+
+		try {
+			ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+			String dirUrl = request.getServletContext().getRealPath("") + File.separator + "uploads" 
+					+ File.separator + "posters";
+			
+			File dir = new File(dirUrl);
+			if (!dir.exists()) dir.mkdirs();
+
+			String title = "", link = "", times = "", quality = "", genreId = "", descriptions = "";
+			boolean active = true;
+			String imgFileName = "";
+
+			for (FileItem item : upload.parseRequest(request)) {
+				if (!item.isFormField()) {
+					String nameimg = item.getName();
+					if (nameimg != null && !nameimg.equals("")) {
+						String uniqueFileName = System.currentTimeMillis() + "_" + new File(nameimg).getName();
+						item.write(new File(dirUrl + File.separator + uniqueFileName));
+						imgFileName = uniqueFileName;
+					}
+				} else {
+					String fieldName = item.getFieldName();
+					String fieldValue = item.getString("UTF-8");
+					
+					if (fieldName.equals("title")) title = fieldValue;
+					else if (fieldName.equals("link")) link = fieldValue;
+					else if (fieldName.equals("times")) times = fieldValue;
+					else if (fieldName.equals("quality")) quality = fieldValue;
+					else if (fieldName.equals("genreid")) genreId = fieldValue;
+					else if (fieldName.equals("descriptions")) descriptions = fieldValue;
+					else if (fieldName.equals("active")) active = Boolean.parseBoolean(fieldValue);
+				}
+			}
+
+			if (title.isEmpty() || link.isEmpty() || imgFileName.isEmpty()) {
+				request.setAttribute("message", "Lỗi: Nhập đầy đủ tiêu đề, link và chọn ảnh bìa!");
+				request.setAttribute("listgenre", new VideoDAO().getAllGenre());
+				request.getRequestDispatcher("AddVideo.jsp").forward(request, response);
+				return;
+			}
+
+			Video video = new Video();
+			video.setTitle(title);
+			video.setLink(link);
+			video.setTimes(times.isEmpty() ? 0 : Integer.parseInt(times));
+			video.setQuality(quality);
+			video.setGenreId(Integer.parseInt(genreId));
+			video.setDescriptions(descriptions);
+			video.setActive(active);
+			video.setImgPoster("uploads/posters/" + imgFileName);
+
+			boolean success = new VideoDAO().addVideo(video);
+			
+			request.setAttribute("listgenre", new VideoDAO().getAllGenre());
+			request.setAttribute("message", success ? "✓ Thêm phim thành công!" : "✗ Lỗi lưu database!");
+			request.getRequestDispatcher("AddVideo.jsp").forward(request, response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("message", "Lỗi: " + e.getMessage());
+			request.setAttribute("listgenre", new VideoDAO().getAllGenre());
+			try {
+				request.getRequestDispatcher("AddVideo.jsp").forward(request, response);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+}

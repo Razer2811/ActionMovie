@@ -1,0 +1,74 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="modal.Users"%>
+<%@page import="modal.GenreVideo"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<header class="site-header">
+	<div class="header-container">
+
+		<div class="header-left">
+			<a href="Home" class="header-logo"> <img
+				src="img/logo2.png" alt="MOVIE ENTERTAINMENT">
+			</a>
+
+			<form action="GenreVideo" class="search-form">
+				<button type="submit" class="search-btn">
+					<i class="fas fa-search"></i>
+				</button>
+				<input type="text" name="timkiem"
+					placeholder="Tìm kiếm phim, diễn viên..." class="search-input">
+			</form>
+		</div>
+
+		<div class="header-right">
+			<nav class="main-menu">
+				<ul>
+					<li><a href="HomeAdmin">Phim Truyện</a></li>
+					<li><a href="QuanLyPhim">Quản Lý Phim</a></li>
+					<li><a href="QuanLyTaiKhoan">Quản Lý Tài Khoản</a></li>
+					<li><a href="ThongKe">Thống Kê</a></li>
+					
+					<li><a href="#">Thể loại <i class="fas fa-caret-down"></i></a>
+						<ul class="sub-menu">
+							<%
+							ArrayList<GenreVideo> dsLoai = (ArrayList<GenreVideo>) request.getAttribute("dsGenre");
+							if (dsLoai != null) {
+								for (GenreVideo g : dsLoai) {
+							%>
+							<li><a href="GenreVideoAdmin?genres=<%=g.getId()%>"> <%=g.getTitle()%>
+							</a></li>
+							<%
+							}
+							}
+							%>
+						</ul></li>
+					<%
+
+					Users user = (Users) session.getAttribute("user");
+
+					if (user == null) {
+					%>
+					<li><a href="Login">Đăng nhập</a></li>
+					<li><a href="Register">Đăng ký</a></li>
+					<%
+					} else {
+					// Xử lý ảnh: Nếu user chưa có avatar thì dùng ảnh mặc định
+					String avatar = user.getAvatar();
+					if (avatar == null || avatar.isEmpty()) {
+						avatar = "logo2.png"; // Ảnh mặc định trong thư mục img
+					}
+					%>
+					<li><a href="#" class="user-greeting""> <img
+							src="avatar/<%=avatar%>" alt="Avatar" class="my-avatar-img">
+							<span><%=user.getFullname()%></span>
+					</a></li>
+					<li><a href="Logout">Đăng xuất</a></li>
+					<%
+					}
+					%>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+</header>

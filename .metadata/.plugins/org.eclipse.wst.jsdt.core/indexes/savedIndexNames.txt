@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+D:\BaiTapLon\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3871936781.index
+2681850990.index
+587965919.index
+587965919.index
+1157622548.index
+2999655729.index
+794762584.index
+2338605939.index

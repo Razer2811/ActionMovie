@@ -1,0 +1,91 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>${pageTitle} - Xem Phim Online</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/genre.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet">
+</head>
+<body>
+
+<jsp:include page="Header.jsp" />
+
+<div class="container mt-4 main-content">
+    <h3 class="section-title">
+        <i class='bx bx-category'></i> ${pageTitle}
+    </h3>
+
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
+
+        <!-- CÓ PHIM -->
+        <c:if test="${not empty dsvideo}">
+            <c:forEach items="${dsvideo}" var="video">
+                <div class="col">
+                    <div class="card-film">
+                        <a href="DetailMovie?id=${video.id}" class="poster-wrapper d-block">
+                            <img src="img/${video.poster}" alt="${video.title}">
+                            <div class="hover-overlay">
+                                <i class='bx bx-play-circle'></i>
+                            </div>
+                        </a>
+
+                        <div class="card-body-custom">
+                            <a href="DetailMovie?id=${video.id}" 
+                               class="movie-title" 
+                               title="${video.title}">
+                                ${video.title}
+                            </a>
+
+                            <div class="movie-meta">
+                                <div class="meta-item">
+                                    <i class='bx bxs-show'></i>
+                                    <span>${video.views}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class='bx bxs-heart'></i>
+                                    <span>${video.totalFavorites}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class='bx bxs-share'></i>
+                                    <span>${video.totalShares}</span>
+                                </div>
+                            </div>
+
+                            <div class="action-buttons">
+                                <a href="DetailMovie?id=${video.id}" class="btn-watch">
+                                    <i class='bx bx-play-circle'></i> Xem
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </c:if>
+
+        <!-- KHÔNG CÓ PHIM -->
+        <c:if test="${empty dsvideo}">
+            <div class="col-12 mt-5">
+                <div class="alert alert-dark text-center border-secondary"
+                     style="background: #161b22; color: #8b949e;">
+                    <i class='bx bx-film fs-1 mb-3'></i><br>
+                    Hiện chưa có phim nào thuộc thể loại này.
+                </div>
+            </div>
+        </c:if>
+
+    </div>
+</div>
+
+<jsp:include page="Footer.jsp" />
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

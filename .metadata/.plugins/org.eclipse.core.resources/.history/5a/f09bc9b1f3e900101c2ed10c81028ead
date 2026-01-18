@@ -1,0 +1,89 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.GenreVideoDao;
+import dao.VideoDao;
+import modal.GenreVideo;
+import modal.Video;
+import modal.Users;
+
+@WebServlet("/UnActive")
+public class unActiveController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 1. Check Admin
+            HttpSession session = request.getSession();
+            Users user = (Users) session.getAttribute("user");
+            if (user == null || !user.isAdmin()) {
+                response.sendRedirect("Home");
+                return;
+            }
+
+            VideoDao videoDao = new VideoDao();
+            GenreVideoDao genreDao = new GenreVideoDao();
+            
+            // 2. Lấy danh sách thể loại
+            ArrayList<GenreVideo> listGenre = genreDao.getGenreVideo(); 
+            request.setAttribute("dsGenre", listGenre); 
+
+            // 3. Lấy tham số thể loại
+            // Vẫn dùng name="typeMovie" nếu bạn submit từ form chung, 
+            // hoặc "genre" nếu bạn gọi từ link (tùy logic front-end của bạn)
+            if(genreIdStr == null) genreIdStr = request.getParameter("genre"); // Fallback
+
+            int genreId = -1;
+            if (genreIdStr != null && !genreIdStr.isEmpty()) {
+                genreId = Integer.parseInt(genreIdStr);
+            }
+           
+            // 4. LẤY DANH SÁCH PHIM ĐÃ ẨN (Dùng hàm số 15 trong DAO)
+            ArrayList<Video> hiddenVideos = videoDao.getVideoUnActive(); 
+            ArrayList<Video> resultList = new ArrayList<>();
+
+            // 5. Lọc theo Genre (nếu có)
+            if (hiddenVideos != null) {
+                if (genreId == -1) {
+                    resultList = hiddenVideos;
+                } else {
+                    for (Video v : hiddenVideos) {
+                        if (v.getIdgenre() == genreId) {
+                            resultList.add(v);
+                        }
+                    }
+                }
+            }
+
+            // 6. Gửi dữ liệu
+            request.setAttribute("dsvideo", resultList);
+            request.setAttribute("check", genreId);
+            
+            // Set session active = false (để hiện nút Khôi phục màu xanh)
+            session.setAttribute("active", false); 
+
+            request.getRequestDispatcher("QuanLyPhim.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("QuanLyPhim");
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}

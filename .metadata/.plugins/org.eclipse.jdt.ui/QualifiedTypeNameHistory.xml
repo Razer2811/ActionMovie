@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.net.ssl.HttpsURLConnection"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="dao.FavoriteDao"/>
+    <fullyQualifiedTypeName name="modal.Favorite"/>
+    <fullyQualifiedTypeName name="controller.LikeMovieController"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="bo.VideoBo"/>
+    <fullyQualifiedTypeName name="bo.GenreVideoBo"/>
+    <fullyQualifiedTypeName name="modal.GenreVideo"/>
+    <fullyQualifiedTypeName name="dao.GenreVideoDao"/>
+    <fullyQualifiedTypeName name="modal.Video"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="modal.KetNoi"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="dao.VideoDao"/>
+    <fullyQualifiedTypeName name="java.security.MessageDigest"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.util.codec.binary.Base64"/>
+    <fullyQualifiedTypeName name="java.util.Base64"/>
+    <fullyQualifiedTypeName name="util.MaHoa"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="modal.Users"/>
+    <fullyQualifiedTypeName name="dao.UserDao"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,267 @@
+<%@page import="modal.GenreVideo"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="modal.Video"%>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Quản lý Phim - Admin</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href = "css/style.css">
+<link href = "css/home.css">
+<style>
+    /* Style cho thanh công cụ */
+    .control-panel {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+    }
+
+    /* Style cho Card Phim để đồng đều */
+    .card-film {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        height: 100%; /* Quan trọng để các card bằng nhau */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-film:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Poster phim tỉ lệ chuẩn */
+    .poster-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 150%; /* Tỉ lệ 2:3 (thường dùng cho poster) */
+        overflow: hidden;
+    }
+
+    .poster-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ảnh sẽ lấp đầy khung mà không bị méo */
+    }
+
+    .hover-overlay {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: 0.3s;
+    }
+    
+    .hover-overlay i {
+        font-size: 3rem;
+        color: white;
+    }
+
+    .poster-wrapper:hover .hover-overlay {
+        opacity: 1;
+    }
+
+    /* Body của card */
+    .card-body-custom {
+        padding: 15px;
+        flex-grow: 1; /* Đẩy phần nút xuống dưới cùng */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-title {
+        font-weight: bold;
+        color: #333;
+        text-decoration: none;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Giới hạn 2 dòng tiêu đề */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 10px;
+        height: 48px; /* Cố định chiều cao tiêu đề */
+    }
+
+    .movie-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .action-buttons {
+        margin-top: auto; /* Đẩy nút xuống đáy */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+</style>
+</head>
+<body class="bg-light">
+    <%
+    ArrayList<GenreVideo> dsLoai = (ArrayList<GenreVideo>) request.getAttribute("dsGenre");
+    ArrayList<Video> dsvideo = (ArrayList<Video>) request.getAttribute("dsvideo");
+    Integer check = (Integer) request.getAttribute("check");
+    String name = (String) request.getAttribute("name");
+    Boolean active = (Boolean) session.getAttribute("active");
+    %>
+    
+    <jsp:include page="HeaderAdmin.jsp"></jsp:include>
+
+    <div class="container mt-4 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="section-title m-0 fw-bold"><i class='bx bxs-videos'></i> Quản Lý Video</h3>
+            <a href="Addvideo?action=new" class="btn btn-success fw-bold shadow-sm">
+                <i class='bx bxs-folder-plus'></i> Thêm Phim Mới
+            </a>
+        </div>
+
+        <div class="control-panel">
+            <form action="QuanLyPhim" method="post">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Thể loại</label>
+                        <select class="form-select" name="genre">
+                            <option value="-1">Tất cả</option>
+                            <% if (dsLoai != null) {
+                                for (GenreVideo g : dsLoai) { %>
+                                <option value="<%=g.getId()%>" <%=(check != null && g.getId() == check) ? "selected" : ""%>>
+                                    <%=g.getTitle()%>
+                                </option>
+                            <% } } %>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Tìm Kiếm</label>
+                        <div class="input-group">
+                            <input type="search" name="searchfilm" class="form-control" placeholder="Nhập tên phim..." value="<%= (name!=null)?name:"" %>">
+                            <button class="btn btn-primary"><i class='bx bx-search-alt-2'></i> Tìm</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 d-flex justify-content-end gap-2">
+                        <a href="Active" class="btn <%= (active != null && active) ? "btn-dark" : "btn-outline-dark" %>">
+                            <i class='bx bx-film'></i> Đang Hiện
+                        </a>
+                        <a href="UnActive" class="btn <%= (active != null && !active) ? "btn-secondary" : "btn-outline-secondary" %>">
+                            <i class='bx bx-hide'></i> Đã Ẩn
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
+            <%
+            if (dsvideo != null && dsvideo.size() > 0) {
+                for (Video video : dsvideo) {
+            %>
+            <div class="col">
+                <div class="card-film">
+                    <a href="DetailMovie?id=<%=video.getId()%>" class="poster-wrapper">
+                        <img src="img/<%=video.getPoster()%>" alt="<%=video.getTitle()%>" onerror="this.src='https://via.placeholder.com/200x300?text=No+Image'">
+                        <div class="hover-overlay">
+                            <i class='bx bx-play-circle'></i>
+                        </div>
+                    </a>
+
+                    <div class="card-body-custom">
+                        <a href="DetailMovie?id=<%=video.getId()%>" class="movie-title" title="<%=video.getTitle()%>">
+                            <%=video.getTitle()%>
+                        </a>
+
+                        <div class="movie-meta">
+                            <span title="Views"><i class='bx bxs-show'></i> <%=video.getViews()%></span>
+                            <span title="Likes"><i class='bx bxs-heart'></i> <%=video.getTotalFavorites()%></span>
+                            <span title="Shares"><i class='bx bxs-share'></i> <%=video.getTotalShares()%></span>
+                        </div>
+
+                        <div class="action-buttons">
+                            <a href="Video?action=watch&id=<%=video.getLink()%>" class="btn btn-sm btn-dark flex-fill me-1">
+                                <i class='bx bx-play-circle'></i> Xem
+                            </a>
+                            <a href="Addvideo?action=update&id=<%=video.getLink()%>" class="btn btn-sm btn-outline-primary" title="Sửa">
+                                <i class='bx bxs-edit'></i>
+                            </a>
+
+                            <% if (active != null && active) { %>
+                                <a href="deleteVideo?id=<%=video.getLink()%>" class="btn btn-sm btn-outline-danger" title="Xóa tạm thời" onclick="return confirm('Bạn có chắc muốn ẩn phim này?');">
+                                    <i class='bx bxs-trash-alt'></i>
+                                </a>
+                            <% } else { %>
+                                <a href="restoreVideo?id=<%=video.getLink()%>" class="btn btn-sm btn-outline-success" title="Khôi phục">
+                                    <i class='bx bx-redo'></i>
+                                </a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%
+                } // Kết thúc vòng lặp for
+            } else { // Nếu danh sách rỗng
+            %>
+            <div class="col-12">
+                <div class="alert alert-secondary text-center py-5">
+                    <i class='bx bx-movie-play fs-1 mb-3'></i><br>
+                    Hiện chưa có phim nào trong danh sách này.
+                </div>
+            </div>
+            <% } %> 
+        </div> <%
+        Integer totalPagesObj = (Integer) request.getAttribute("totalPages");
+        Integer currentPageObj = (Integer) request.getAttribute("currentPage");
+        int totalPages = (totalPagesObj != null) ? totalPagesObj : 1;
+        int currentPage = (currentPageObj != null) ? currentPageObj : 1;
+        if (totalPages > 1) {
+        %>
+        <div class="d-flex justify-content-center mt-5">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item <%=(currentPage == 1) ? "disabled" : ""%>">
+                        <a class="page-link" href="Home?page=<%=currentPage - 1%>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <% for (int i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%=(i == currentPage) ? "active" : ""%>">
+                        <a class="page-link" href="Home?page=<%=i%>"><%=i%></a>
+                    </li>
+                    <% } %>
+
+                    <li class="page-item <%=(currentPage == totalPages) ? "disabled" : ""%>">
+                        <a class="page-link" href="Home?page=<%=currentPage + 1%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <% } %>
+    </div>
+
+    <jsp:include page="Footer.jsp"></jsp:include>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.GenreVideoDao;
+import dao.VideoDao;
+import modal.GenreVideo;
+import modal.Video;
+
+@WebServlet("/QuanLyPhim")
+public class QuanLyPhimController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public QuanLyPhimController() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 1. Lấy tham số
+            String searchKey = request.getParameter("searchfilm"); 
+            String genreIdStr = request.getParameter("genre");
+            
+            VideoDao videoDao = new VideoDao();
+            GenreVideoDao genreDao = new GenreVideoDao();
+            
+            // 2. Lấy danh sách thể loại trước
+            ArrayList<GenreVideo> listGenre = genreDao.getGenreVideo();
+            
+            // 3. Xử lý ID thể loại mặc định
+            int genreId = -1;
+            if (genreIdStr != null) {
+                genreId = Integer.parseInt(genreIdStr);
+            } else if (listGenre != null && !listGenre.isEmpty()) {
+                // Nếu lần đầu vào trang (genreIdStr == null), lấy ID của thể loại đầu tiên
+                genreId = listGenre.get(0).getId();
+            }
+
+            String keyword = (searchKey != null) ? searchKey.trim() : "";
+
+            // 4. Lấy dữ liệu và lọc
+            ArrayList<Video> allVideos = videoDao.getVideo(); 
+            ArrayList<Video> resultList = new ArrayList<>();
+
+            if (allVideos != null) {
+                for (Video v : allVideos) {
+                    // Điều kiện 1: Phải trùng khớp genreId (Vì không còn -1 nên luôn phải trùng)
+                    boolean matchGenre = (v.getIdgenre() == genreId);
+                    
+                    // Điều kiện 2: Tên phim
+                    boolean matchName = keyword.isEmpty() || v.getTitle().toLowerCase().contains(keyword.toLowerCase());
+
+                    if (matchGenre && matchName) {
+                        resultList.add(v);
+                    }
+                }
+            }
+
+            // 5. Đẩy dữ liệu ra JSP
+            request.setAttribute("dsvideo", resultList);
+            request.setAttribute("dsGenre", listGenre);
+            request.setAttribute("check", genreId); 
+            request.setAttribute("name", keyword);
+
+            request.getRequestDispatcher("QuanLyPhim.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}

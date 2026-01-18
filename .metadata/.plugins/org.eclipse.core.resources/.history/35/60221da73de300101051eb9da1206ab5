@@ -1,0 +1,36 @@
+<header class="site-header">
+    <div class="header-container">
+        
+        <div class="header-left">
+            <a href="#" class="header-logo">
+                <img src="img/logo2.png" alt="MOVIE ENTERTAINMENT">
+            </a>
+
+            <form class="search-form">
+                <button type="button" class="search-btn"><i class="fas fa-search"></i></button>
+                <input type="text" placeholder="Tìm kiếm phim, diễn viên..." class="search-input">
+            </form>
+        </div>
+
+        <div class="header-right">
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="#">Phim Lẻ</a></li>
+                    <li><a href="#">Phim Bộ</a></li>
+                    <li>
+                        <a href="#">Thể loại <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">Quốc gia <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li><a href="#">Xem Chung</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                
+            </div>
+        </div>
+
+    </div>
+</header>

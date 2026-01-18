@@ -1,0 +1,33 @@
+<footer class="site-footer">
+        <div class="container">
+            
+            <div class="footer-banner">
+                <i class="fas fa-star" style="color: #ffff00; margin-right: 5px;"></i>
+                <span>Hoàng Sa & Trường Sa là của Việt Nam!</span>
+            </div>
+
+            <div class="footer-brand-section">
+                <img src="anh/logo2.png" alt="MOVIE ENTERTAINMENT" class="footer-logo">
+                
+                <div class="vertical-divider"></div>
+
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                
+                
+                <p class="footer-description">
+                    MK Film – Phim hay cả rổ - Trang xem phim online chất lượng cao miễn phí Vietsub, thuyết minh, lồng tiếng full HD. Kho phim mới khổng lồ, phim chiếu rạp, phim bộ, phim lẻ từ nhiều quốc gia như Việt Nam, Hàn Quốc, Trung Quốc, Thái Lan, Nhật Bản, Âu Mỹ... đa dạng thể loại. Khám phá nền tảng phim trực tuyến hay nhất 2024 chất lượng 4K!
+                </p>
+                <p class="footer-copyright">© 2025 Trần Lê Minh Khánh</p>
+            </div>
+        </div>
+    </footer>

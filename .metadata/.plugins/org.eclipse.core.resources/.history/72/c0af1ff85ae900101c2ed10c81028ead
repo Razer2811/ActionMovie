@@ -1,0 +1,187 @@
+@charset "utf-8";
+
+.body {
+	background-color: #0d1117;
+	color: #e6edf3;
+	font-family: 'Segoe UI', sans-serif;
+}
+
+/* --- TIÊU ĐỀ --- */
+.section-title {
+	color: #d2a106; /* Màu vàng kim loại */
+	font-weight: 700;
+	border-left: 5px solid #d2a106;
+	padding-left: 15px;
+	margin-bottom: 25px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+/* --- BANNER VIDEO --- */
+.video-banner-container {
+	position: relative;
+	margin-bottom: 50px;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 0 30px rgba(210, 161, 6, 0.15); /* Bóng vàng nhẹ */
+	border: 1px solid #30363d;
+}
+
+.video-banner-container iframe {
+	width: 100%;
+	display: block;
+}
+
+/* --- CARD PHIM (GIỐNG DETAIL MOVIE) --- */
+.card-film {
+	background-color: #161b22;
+	border: 1px solid #30363d;
+	border-radius: 12px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	height: 100%;
+	position: relative;
+}
+
+.card-film:hover {
+	transform: translateY(-7px);
+	border-color: #d2a106;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.poster-wrapper {
+	position: relative;
+	aspect-ratio: 2/3; /* Tỷ lệ chuẩn poster */
+	overflow: hidden;
+}
+
+.poster-wrapper img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.5s ease;
+}
+
+.card-film:hover .poster-wrapper img {
+	transform: scale(1.1);
+}
+
+/* Nút Play khi hover */
+.hover-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.card-film:hover .hover-overlay {
+	opacity: 1;
+}
+
+.hover-overlay i {
+	font-size: 3.5rem;
+	color: #d2a106;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Thông tin phim */
+.card-body-custom {
+	padding: 15px;
+}
+
+.movie-title {
+	font-size: 16px;
+	font-weight: 600;
+	color: #e6edf3;
+	text-decoration: none;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* Cắt 1 dòng */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 8px;
+	transition: color 0.2s;
+}
+
+.movie-title:hover {
+	color: #d2a106;
+}
+
+.movie-meta {
+	font-size: 13px;
+	color: #8b949e;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.meta-item {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.meta-item i {
+	color: #d2a106;
+} /* Icon màu vàng */
+
+/* --- PHÂN TRANG CUSTOM (CHO NỀN TỐI) --- */
+.pagination .page-item .page-link {
+	background-color: #161b22;
+	border-color: #30363d;
+	color: #e6edf3;
+	margin: 0 3px;
+	border-radius: 6px;
+}
+
+.pagination .page-item .page-link:hover {
+	background-color: #30363d;
+	color: #d2a106;
+	border-color: #8b949e;
+}
+
+.pagination .page-item.active .page-link {
+	background-color: #d2a106;
+	border-color: #d2a106;
+	color: #000;
+	font-weight: bold;
+}
+
+.pagination .page-item.disabled .page-link {
+	background-color: #0d1117;
+	color: #484f58;
+	border-color: #30363d;
+}
+.btn-watch {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 6px 12px;
+	width: 100%;
+	background: #d2a106;
+	color: black;
+	font-size: 14px;
+	font-weight: 600;
+	border-radius: 8px;
+	text-decoration: none;
+	transition: all 0.25s ease;
+}
+
+.btn-watch i {
+	font-size: 18px;
+}
+
+.btn-watch:hover {
+	background: #d2a106;
+	color: white;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(46, 164, 79, 0.35);
+}
+

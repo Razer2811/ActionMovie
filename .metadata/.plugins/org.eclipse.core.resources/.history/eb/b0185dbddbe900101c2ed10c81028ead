@@ -1,0 +1,96 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bo.GenreVideoBo;
+import bo.VideoBo;
+import modal.GenreVideo;
+import modal.Users;
+import modal.Video;
+
+@WebServlet("/QuanLyPhim")
+@MultipartConfig // Thêm dòng này nếu form của bạn có upload ảnh (enctype="multipart/form-data")
+public class QuanLyPhimController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public QuanLyPhimController() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // 1. Cấu hình Tiếng Việt
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 2. Kiểm tra quyền Admin (Bảo mật)
+            HttpSession session = request.getSession();
+            Users user = (Users) session.getAttribute("user");
+            
+            // Nếu chưa đăng nhập hoặc không phải admin thì đẩy về trang Login
+            if (user == null || !user.isAdmin()) {
+                response.sendRedirect("Login");
+                return;
+            }
+
+            // 3. Khởi tạo BO
+            VideoBo vbo = new VideoBo();
+            GenreVideoBo gbo = new GenreVideoBo();
+
+            // 4. Xử lý chức năng XÓA (nếu có tham số ?action=delete&id=...)
+            String action = request.getParameter("action");
+            String idReq = request.getParameter("id");
+            
+            if ("delete".equals(action) && idReq != null) {
+                vbo.xoaVideo(idReq); // Gọi hàm xóa bên BO
+
+            }
+
+            String pageParam = request.getParameter("page");
+            int currentPage = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                try {
+                    currentPage = Integer.parseInt(pageParam);
+                } catch (NumberFormatException e) {
+                    currentPage = 1;
+                }
+            }
+
+            // Lấy danh sách phim theo trang
+            ArrayList<Video> listVideo = vbo.getVideosByPage(currentPage);
+            int totalPages = vbo.getTotalPages();
+
+            // Lấy danh sách thể loại (để dùng cho Modal Thêm/Sửa hoặc Filter)
+            ArrayList<GenreVideo> listGenre = gbo.getGenreVideo();
+
+            request.setAttribute("dsvideo", listVideo);
+            request.setAttribute("dsGenre", listGenre);
+            request.setAttribute("totalPages", totalPages);
+            request.setAttribute("currentPage", currentPage);
+            
+            String tb = request.getParameter("tb");
+            if(tb != null) request.setAttribute("tb", tb);
+
+            request.getRequestDispatcher("QuanLyPhim.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi: " + e.getMessage());
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            doGet(request, response);
+    }
+}

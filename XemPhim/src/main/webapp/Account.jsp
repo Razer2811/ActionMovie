@@ -1,0 +1,154 @@
+<%@page import="java.util.List"%>
+<%@page import="modal.Users"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Quản lý Tài Khoản - Admin</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<%
+	String message = (String) request.getAttribute("message");
+	String error = (String) request.getAttribute("error");
+	Users editUser = (Users) request.getAttribute("user");
+	List<Users> listUsers = (List<Users>) request.getAttribute("listUsers");
+	%>
+	<jsp:include page="HeaderAdmin.jsp"></jsp:include>
+	<div class="container mt-4">
+		<h2 class="text-warning mb-4">QUẢN LÝ TÀI KHOẢN</h2>
+		<%
+		if (message != null) {
+		%>
+		<div class="alert alert-success alert-dismissible fade show">
+			<%=message%>
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		</div>
+		<%
+		}
+		%>
+		<%
+		if (error != null) {
+		%>
+		<div class="alert alert-danger alert-dismissible fade show">
+			<%=error%>
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+		</div>
+		<%
+		}
+		%>
+		<%
+		if (editUser != null) {
+		%>
+		<div class="card border-warning mb-4 shadow">
+			<div class="card-header bg-warning text-dark fw-bold">
+				<i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa User:
+				<%=editUser.getId()%>
+			</div>
+			<div class="card-body">
+				<form action="QuanLyAccount" method="post">
+					<input type="hidden" name="action" value="update">
+					<div class="row g-3">
+						<div class="col-md-3">
+							<label class="form-label">Username (ID)</label> <input
+								type="text" name="id" class="form-control bg-light"
+								value="<%=editUser.getId()%>" readonly>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label">Họ tên</label> <input type="text"
+								name="fullname" class="form-control"
+								value="<%=editUser.getFullname()%>" required>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label">Email</label> <input type="email"
+								name="email" class="form-control"
+								value="<%=editUser.getEmail()%>" required>
+						</div>
+						<div class="col-md-2 d-flex align-items-center mt-4">
+							<div class="form-check form-switch">
+								<input class="form-check-input" type="checkbox" name="admin"
+									value="true" <%=editUser.isAdmin() ? "checked" : ""%>>
+								<label class="form-check-label fw-bold">Quyền Admin</label>
+							</div>
+						</div>
+						<div class="col-md-1 d-flex align-items-end">
+							<button type="submit" class="btn btn-success w-100">Lưu</button>
+						</div>
+						<div class="col-12 text-end">
+							<a href="QuanLyAccount" class="btn btn-outline-secondary btn-sm">Hủy
+								bỏ</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<%
+		}
+		%>
+		<div class="table-responsive">
+			<table
+				class="table table-dark table-hover table-bordered align-middle">
+				<thead>
+					<tr class="text-warning text-center">
+						<th>Username (ID)</th>
+						<th>Họ tên</th>
+						<th>Email</th>
+						<th>Ngày sinh</th>
+						<th>Ngày đăng ký</th>
+						<th>Vai trò</th>
+						<th>Hành động</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					if (listUsers != null) {
+						for (Users u : listUsers) {
+					%>
+					<tr>
+						<td class="fw-bold"><%=u.getId()%></td>
+						<td><%=u.getFullname()%></td>
+						<td><%=u.getEmail()%></td>
+						<td><%=u.getBirth() != null ? u.getBirth() : ""%></td>
+						<td><%=u.getStartday() != null ? u.getStartday() : ""%></td>
+						<td class="text-center">
+							<%
+							if (u.isAdmin()) {
+							%> <span class="badge bg-danger">Admin</span>
+							<%
+							} else {
+							%> <span class="badge bg-secondary">User</span> <%
+ }
+ %>
+						</td>
+						<td class="text-center"><a
+							href="QuanLyAccount?action=delete&id=<%=u.getId()%>"
+							class="btn btn-sm btn-danger"
+							onclick="return confirm('Bạn có chắc muốn xóa user <%=u.getId()%>?');">
+								<i class="fa-solid fa-trash"></i>
+						</a></td>
+					</tr>
+					<%
+					}
+					} else {
+					%>
+					<tr>
+						<td colspan="7" class="text-center">Không có dữ liệu</td>
+					</tr>
+					<%
+					}
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<jsp:include page="Footer.jsp"></jsp:include>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

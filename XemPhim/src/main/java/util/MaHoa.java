@@ -1,0 +1,26 @@
+package util;
+
+import java.security.MessageDigest;
+import java.util.Base64;
+import java.nio.charset.StandardCharsets;
+
+public class MaHoa {
+
+    public static String toSHA1(String str) {
+        String salt = "dkfg';fgsdf..d";
+        String result = null;
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] hash = md.digest((str + salt).getBytes(StandardCharsets.UTF_8));
+            result = Base64.getEncoder().encodeToString(hash);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+    public static void main(String[] args) {
+		System.out.println(toSHA1("123456"));
+	}
+}

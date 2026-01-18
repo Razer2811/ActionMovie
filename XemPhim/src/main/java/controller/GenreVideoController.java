@@ -1,0 +1,89 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.GenreVideoDao;
+import dao.VideoDao;
+import modal.GenreVideo;
+import modal.Video;
+
+@WebServlet("/GenreVideo")
+public class GenreVideoController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public GenreVideoController() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // 1. Cấu hình Tiếng Việt
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 2. Chuẩn bị dữ liệu
+            String searchKey = request.getParameter("timkiem");
+            String genreIdStr = request.getParameter("genres");
+            
+            VideoDao videoDao = new VideoDao();
+            GenreVideoDao genreDao = new GenreVideoDao();
+            
+            ArrayList<Video> resultList = new ArrayList<>();
+            
+            // LẤY MENU THỂ LOẠI TRƯỚC (Dùng chung cho cả logic tiêu đề và menu header)
+            ArrayList<GenreVideo> listGenre = genreDao.getGenreVideo();
+            
+            String pageTitle = "Danh sách phim"; // Tiêu đề mặc định
+
+            // --- TRƯỜNG HỢP 1: TÌM KIẾM ---
+            if (searchKey != null && !searchKey.trim().isEmpty()) {
+                resultList = videoDao.timTen(searchKey);
+                pageTitle = "Kết quả tìm kiếm: \"" + searchKey + "\"";
+            } 
+            // --- TRƯỜNG HỢP 2: LỌC THEO THỂ LOẠI ---
+            else if (genreIdStr != null) {
+                try {
+                    int genreId = Integer.parseInt(genreIdStr);
+                    
+                    // Lấy danh sách phim theo thể loại
+                    resultList = videoDao.getVideosByGenreID(genreId);
+                    
+                    // Tận dụng listGenre đã lấy ở trên để tìm tên thể loại (Không cần gọi DB lần nữa)
+                    for (GenreVideo g : listGenre) {
+                        if (g.getId() == genreId) {
+                            pageTitle = "Thể loại: " + g.getTitle();
+                            break;
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    // ID lỗi thì giữ nguyên list rỗng
+                }
+            }
+
+            // 3. Đẩy dữ liệu sang JSP
+            request.setAttribute("dsvideo", resultList);
+            request.setAttribute("dsGenre", listGenre); // Menu Header
+            request.setAttribute("pageTitle", pageTitle); // Tiêu đề động
+
+            // 4. Chuyển hướng
+            request.getRequestDispatcher("GenreVideo.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi xử lý: " + e.getMessage());
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}

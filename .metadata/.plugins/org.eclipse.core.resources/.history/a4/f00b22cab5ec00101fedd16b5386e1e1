@@ -1,0 +1,68 @@
+package controller;
+
+import java.io.IOException;
+import java.sql.Date; // Lưu ý import java.sql.Date
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.UserDao;
+
+@WebServlet("/Register")
+public class RegisterController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Nếu ai đó cố tình vào link này bằng method GET, chuyển về trang đăng ký
+        RequestDispatcher rd = request.getRequestDispatcher("Register.jsp");
+        rd.forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+
+            String user = request.getParameter("username");
+            String pass = request.getParameter("pass");
+            String rePass = request.getParameter("repass"); // Ô nhập lại mật khẩu
+            String email = request.getParameter("email");
+            String fullname = request.getParameter("fullname");
+            String birthStr = request.getParameter("birth"); // Nhận dạng chuỗi "yyyy-mm-dd"
+
+            if (pass == null || !pass.equals(rePass)) {
+                request.setAttribute("tb", "Mật khẩu nhập lại không khớp!");
+                request.getRequestDispatcher("Register.jsp").forward(request, response);
+                return;
+            }
+
+            String avatar = "macdinh.jpg"; // Avatar mặc định
+            Date starday = new Date(System.currentTimeMillis()); // Ngày hiện tại
+            
+            Date birth = null;
+            if(birthStr != null && !birthStr.isEmpty()) {
+                birth = Date.valueOf(birthStr);
+            } else {
+                birth = new Date(System.currentTimeMillis()); 
+            }
+
+            UserDao dao = new UserDao();
+            
+            dao.themUser(user, pass, email, fullname, birth, avatar, starday);
+
+            // 6. Thành công -> Chuyển sang trang Login và thông báo
+            request.setAttribute("tb", "Đăng ký thành công! Vui lòng đăng nhập.");
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Báo lỗi hệ thống hoặc trùng tên đăng nhập (do SQL constraint)
+            request.setAttribute("tb", "Đăng ký thất bại! Tên đăng nhập có thể đã tồn tại.");
+            request.getRequestDispatcher("Register.jsp").forward(request, response);
+        }
+    }
+}

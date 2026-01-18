@@ -1,0 +1,66 @@
+package controller;
+
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.UserDao;
+import modal.Users;
+
+@WebServlet("/QuanLyAccount")
+public class QuanLyAccountController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        try {
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 1. Kiểm tra quyền Admin (Giống userController.java)
+            HttpSession session = request.getSession();
+            Users user = (Users) session.getAttribute("user");
+            
+            // Nếu chưa đăng nhập hoặc không phải admin thì đá về trang đăng nhập/trang chủ
+            if (user == null || !user.isAdmin()) {
+                response.sendRedirect("Home"); 
+                return;
+            }
+
+            UserDao dao = new UserDao();
+            String action = request.getParameter("action");
+
+            // 2. Xử lý xóa (Nếu có yêu cầu xóa)
+            if ("delete".equals(action)) {
+                String id = request.getParameter("id");
+                // Không cho tự xóa chính mình
+                if (id != null && !id.equals(user.getId())) {
+                    dao.delete(id);
+                }
+            }
+
+            // 3. Lấy danh sách Users (Giống đoạn gọi khachhangbo)
+            List<Users> listUsers = dao.getUser();
+
+            // 4. Gửi dữ liệu về JSP
+            request.setAttribute("dskh", listUsers); // Tôi đặt tên là "dskh" cho giống mẫu của bạn
+
+            // 5. Chuyển hướng
+            request.getRequestDispatcher("Account.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("Home");
+        }
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}

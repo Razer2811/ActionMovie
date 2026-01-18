@@ -1,0 +1,46 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<header class="site-header">
+	<div class="header-container">
+
+		<div class="header-left">
+			<a href="HomeAdmin" class="header-logo"> <img src="img/logo2.png"
+				alt="MOVIE ENTERTAINMENT">
+			</a>
+
+			<form action="GenreVideo" class="search-form">
+				<button type="submit" class="search-btn">
+					<i class="fas fa-search"></i>
+				</button>
+				<input type="text" name="timkiem"
+					placeholder="Tìm kiếm phim, diễn viên..." class="search-input">
+			</form>
+		</div>
+
+		<div class="header-right">
+			<nav class="main-menu">
+				<ul>
+					<li><a href="HomeAdmin">Phim Truyện</a></li>
+					<li><a href="QuanLyPhim">Quản Lý Phim</a></li>
+					<li><a href="QuanLyAccount">Quản Lý Tài Khoản</a></li>
+					<!-- CHƯA ĐĂNG NHẬP -->
+					<c:if test="${empty sessionScope.user}">
+						<li><a href="Login">Đăng nhập</a></li>
+						<li><a href="Register">Đăng ký</a></li>
+					</c:if>
+
+					<!-- ĐÃ ĐĂNG NHẬP -->
+					<c:if test="${not empty sessionScope.user}">
+						<li><a href="#" class="user-greeting"> <img
+								src="avatar/${empty sessionScope.user.avatar ? 'logo2.png' : sessionScope.user.avatar}"
+								alt="Avatar" class="my-avatar-img"> <span>${sessionScope.user.fullname}</span>
+						</a></li>
+						<li><a href="Logout">Đăng xuất</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</div>
+
+	</div>
+</header>

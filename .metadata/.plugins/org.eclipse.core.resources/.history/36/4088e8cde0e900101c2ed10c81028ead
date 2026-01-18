@@ -1,0 +1,103 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.GenreVideoDao;
+import dao.VideoDao;
+import modal.GenreVideo;
+import modal.Video;
+
+@WebServlet("/QuanLyPhim")
+public class QuanLyPhimController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public QuanLyPhimController() {
+        super();
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            // 1. Cấu hình Tiếng Việt
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 2. Lấy dữ liệu từ Form (Khớp tên với file JSP)
+            // Trong JSP: name="searchfilm" và name="genre"
+            String searchKey = request.getParameter("searchfilm"); 
+            String genreIdStr = request.getParameter("genre");
+            GenreVideoDao genreDao = new GenreVideoDao();
+            
+            // Xử lý giá trị đầu vào (tránh null)
+            ArrayList<GenreVideo> listGenre = genreDao.getGenreVideo();
+            String keyword = (searchKey != null) ? searchKey.trim() : "";
+            int genreId = -1;
+            if (genreIdStr != null) {
+                genreId = Integer.parseInt(genreIdStr);
+            } else if (listGenre != null && !listGenre.isEmpty()) {
+                // Nếu lần đầu vào trang (genreIdStr == null), lấy ID của thể loại đầu tiên
+                genreId = listGenre.get(0).getId();
+            }
+            // 3. Khởi tạo DAO
+            VideoDao videoDao = new VideoDao();
+            GenreVideoDao genreDao = new GenreVideoDao();
+            
+            // 4. Lấy dữ liệu nguồn
+            // Lấy danh sách thể loại để hiện lên dropdown
+            ArrayList<GenreVideo> listGenre = genreDao.getGenreVideo(); 
+            
+            // Lấy TẤT CẢ video lên trước, sau đó lọc bằng Java (Cách an toàn nhất nếu chưa viết SQL lọc)
+            // Giả sử DAO có hàm findAll() hoặc getAll() trả về ArrayList<Video>
+            ArrayList<Video> allVideos = videoDao.getVideo(); 
+            ArrayList<Video> resultList = new ArrayList<>();
+
+            // 5. Xử lý Lọc (Logic kết hợp cả tên và thể loại)
+            if (allVideos != null) {
+                for (Video v : allVideos) {
+                    // Điều kiện 1: Thể loại (Nếu chọn -1 thì bỏ qua check thể loại)
+                    // Lưu ý: v.getGenreId() phải khớp với tên hàm trong Model Video của bạn
+                    boolean matchGenre = (genreId == -1) || (v.getIdgenre() == genreId);
+                    
+                    // Điều kiện 2: Tên phim (Nếu rỗng thì bỏ qua check tên)
+                    boolean matchName = keyword.isEmpty() || v.getTitle().toLowerCase().contains(keyword.toLowerCase());
+
+                    // Nếu thỏa mãn CẢ HAI thì thêm vào danh sách kết quả
+                    if (matchGenre && matchName) {
+                        resultList.add(v);
+                    }
+                }
+            }
+
+            // 6. Đẩy dữ liệu sang JSP
+            request.setAttribute("dsvideo", resultList);  // Danh sách kết quả
+            request.setAttribute("dsGenre", listGenre);   // Menu Dropdown
+            
+            // Giữ lại trạng thái để UI hiển thị đúng cái người dùng vừa chọn/nhập
+            request.setAttribute("check", genreId);       // Để <select> selected đúng dòng
+            request.setAttribute("name", keyword);        // Để <input> hiện lại chữ đã gõ
+
+            // 7. Chuyển hướng
+            request.getRequestDispatcher("QuanLyPhim.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Nếu lỗi thì vẫn chuyển về trang chính nhưng danh sách rỗng để không chết trang
+            request.getRequestDispatcher("QuanLyPhim.jsp").forward(request, response);
+        }
+    }
+
+    // doPost gọi lại doGet để xử lý chung 1 chỗ
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+}

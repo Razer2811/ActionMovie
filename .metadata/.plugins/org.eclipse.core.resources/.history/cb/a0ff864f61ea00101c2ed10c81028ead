@@ -1,0 +1,187 @@
+package controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+// Import thư viện Commons FileUpload
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import dao.GenreVideoDao;
+import dao.VideoDao;
+import modal.GenreVideo;
+import modal.Users;
+import modal.Video;
+
+@WebServlet("/Addvideo")
+public class AddVideoController extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    // --- PHẦN GET: HIỂN THỊ FORM ---
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            request.setCharacterEncoding("utf-8");
+            response.setCharacterEncoding("utf-8");
+
+            // 1. Check Admin
+            HttpSession session = request.getSession();
+            Users user = (Users) session.getAttribute("user");
+            if (user == null || !user.isAdmin()) {
+                response.sendRedirect("Home");
+                return;
+            }
+
+            // 2. Lấy danh sách thể loại để đổ vào Dropdown
+            GenreVideoDao genreDao = new GenreVideoDao();
+            ArrayList<GenreVideo> listGenre = genreDao.getGenreVideo();
+            request.setAttribute("listgenre", listGenre);
+
+            // 3. Chuyển sang trang JSP
+            request.getRequestDispatcher("AddVideo.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("QuanLyPhim");
+        }
+    }
+
+    // --- PHẦN POST: XỬ LÝ THÊM MỚI (DÙNG COMMONS FILEUPLOAD) ---
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+
+        // 1. Khởi tạo các biến giá trị mặc định
+        // (Phải tạo trước vì vòng lặp mới gán giá trị sau)
+        String title = "";
+        String link = "";
+        String description = "";
+        String quality = "HD";
+        String posterName = "default.jpg"; // Ảnh mặc định
+        int times = 0;
+        int genreId = 1;
+        
+        // Mặc định là false. Nếu checkbox được tích, vòng lặp sẽ tìm thấy và gán thành true.
+        boolean active = false; 
+        boolean vip = false;
+
+        String message = "";
+
+        try {
+            // 2. Kiểm tra xem form có phải multipart không
+            if (!ServletFileUpload.isMultipartContent(request)) {
+                message = "Form không đúng định dạng multipart!";
+                request.setAttribute("message", message);
+                doGet(request, response);
+                return;
+            }
+
+            // 3. Cấu hình thư mục lưu ảnh
+            String uploadFolder = request.getServletContext().getRealPath("/img");
+            File dir = new File(uploadFolder);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+
+            // 4. Khởi tạo bộ xử lý upload
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            upload.setHeaderEncoding("UTF-8"); // Xử lý tên file tiếng Việt
+
+            // 5. Phân tích request -> Lấy danh sách các items (text + file)
+            List<FileItem> items = upload.parseRequest(request);
+
+            // 6. DUYỆT VÒNG LẶP ĐỂ LẤY DỮ LIỆU
+            for (FileItem item : items) {
+                
+                if (!item.isFormField()) {
+                    // === ĐÂY LÀ FILE (Ảnh Poster) ===
+                    String fileName = item.getName();
+                    
+                    if (fileName != null && !fileName.trim().isEmpty()) {
+                        // Lấy tên file gốc
+                        fileName = new File(fileName).getName();
+                        posterName = fileName; // Lưu lại tên để đưa vào DB
+
+                        // Lưu file vào server
+                        File storeFile = new File(uploadFolder + File.separator + fileName);
+                        item.write(storeFile); 
+                    }
+                } else {
+                    // === ĐÂY LÀ CÁC Ô NHẬP LIỆU (Title, Link, Checkbox...) ===
+                    String fieldName = item.getFieldName();
+                    String fieldValue = item.getString("UTF-8"); // Lấy giá trị chuỗi UTF-8
+
+                    switch (fieldName) {
+                        case "title":
+                            title = fieldValue;
+                            break;
+                        case "link":
+                            link = fieldValue;
+                            break;
+                        case "descriptions":
+                            description = fieldValue;
+                            break;
+                        case "quality":
+                            quality = fieldValue;
+                            break;
+                        case "times":
+                            if(!fieldValue.isEmpty()) times = Integer.parseInt(fieldValue);
+                            break;
+                        case "genreid":
+                            if(!fieldValue.isEmpty()) genreId = Integer.parseInt(fieldValue);
+                            break;
+                        
+                        // Checkbox: Chỉ khi được tích nó mới xuất hiện ở đây
+                        case "active":
+                            active = true; 
+                            break;
+                        case "vip":
+                            vip = true;
+                            break;
+                    }
+                }
+            } // Kết thúc vòng lặp
+
+            // 7. Tạo đối tượng Video
+            Video v = new Video();
+            v.setTitle(title);
+            v.setLink(link);
+            v.setPoster(posterName);
+            v.setTimes(times);
+            v.setQuality(quality);
+            v.setDescriptions(description);
+            v.setIdgenre(genreId);
+            v.setViews(0);
+            
+            // Gán 2 giá trị quan trọng này vào (đã được cập nhật true/false từ vòng lặp)
+            v.setActive(active);
+            v.setVip(vip);
+
+            // 8. Gọi DAO để lưu (Hàm themVideo đã sửa SQL nhận active dynamic)
+            VideoDao dao = new VideoDao();
+            dao.themVideo(v);
+
+            message = "Thêm thành công phim: " + title;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            message = "Lỗi: " + e.getMessage();
+        }
+
+        // 9. Load lại trang
+        request.setAttribute("message", message);
+        doGet(request, response);
+    }
+}
