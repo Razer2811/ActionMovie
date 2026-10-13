@@ -63,7 +63,7 @@ public class AddVideoController extends HttpServlet {
 
             // 3. Khởi tạo biến hứng dữ liệu
             String title = "", link = "", quality = "HD", descriptions = "";
-            String posterName = "default.jpg"; // Ảnh mặc định
+            String posterName = "logo.png"; // Ảnh mặc định
             int times = 0;
             int genreId = 1;
             boolean active = false; // Mặc định ẩn

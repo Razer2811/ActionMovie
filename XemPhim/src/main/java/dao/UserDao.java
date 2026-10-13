@@ -11,7 +11,7 @@ import modal.Users;
 
 public class UserDao {
 	public ArrayList<Users> getUser() throws Exception {
-		ArrayList<Users> ds = new ArrayList();
+		ArrayList<Users> ds = new ArrayList<>();
 		KetNoi kn = new KetNoi();
 		kn.ketnoi();
 		String sql = "SELECT * FROM USERS WHERE active = 1";

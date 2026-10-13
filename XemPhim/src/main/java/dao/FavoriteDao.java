@@ -11,7 +11,7 @@ public class FavoriteDao {
 
 	// 1. Lấy danh sách yêu thích (Legacy)
 	public ArrayList<Favorite> getFavorite() throws Exception {
-		ArrayList<Favorite> ds = new ArrayList();
+		ArrayList<Favorite> ds = new ArrayList<>();
 		KetNoi kn = new KetNoi();
 		kn.ketnoi();
 		String sql = "SELECT * FROM FAVORITE WHERE active = 1";

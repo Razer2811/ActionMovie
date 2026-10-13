@@ -9,7 +9,7 @@ import modal.KetNoi;
 
 public class GenreVideoDao {
 	public ArrayList<GenreVideo> getGenreVideo() throws Exception {
-	      ArrayList<GenreVideo> ds = new ArrayList();
+	      ArrayList<GenreVideo> ds = new ArrayList<>();
 	      KetNoi kn = new KetNoi();
 	      kn.ketnoi();
 	      String sql = "SELECT * FROM GENREVIDEO";

@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 @WebServlet("/Chatbot")
 public class ChatbotServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private Gson gson = new Gson();
+    private static final Gson GSON = new Gson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class ChatbotServlet extends HttpServlet {
         JsonObject response_json = processQuestion(message);
         
         PrintWriter out = response.getWriter();
-        out.print(gson.toJson(response_json));
+        out.print(GSON.toJson(response_json));
         out.flush();
         out.close();
     }

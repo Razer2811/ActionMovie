@@ -11,7 +11,7 @@ public class ShareDao {
 
 	// 1. Lấy danh sách chia sẻ
 	public ArrayList<Share> getShare() throws Exception {
-		ArrayList<Share> ds = new ArrayList();
+		ArrayList<Share> ds = new ArrayList<>();
 		KetNoi kn = new KetNoi();
 		kn.ketnoi();
 		String sql = "SELECT * FROM SHARE";

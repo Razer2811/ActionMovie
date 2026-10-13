@@ -70,7 +70,7 @@ public class RegisterController extends HttpServlet {
                 String passMaHoa = util.MaHoa.toSHA1(pass); 
                 
                 Date birth = (birthStr != null && !birthStr.isEmpty()) ? Date.valueOf(birthStr) : new Date(System.currentTimeMillis());
-                String avatar = "macdinh.jpg";
+                String avatar = "logo.png";
                 Date starday = new Date(System.currentTimeMillis());
 
                 dao.themUser(user, passMaHoa, email, fullname, birth, avatar, starday);
