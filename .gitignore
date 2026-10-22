@@ -1,2 +1,24 @@
 # Local application runtime downloaded for development.
 /tools/
+# Eclipse workspace
+.metadata/
+.recommenders/
+Servers/
+
+# IDE
+.settings/
+.project
+.classpath
+.vscode/
+
+# Build files
+target/
+build/
+bin/
+
+# Logs
+*.log
+
+# Windows
+Thumbs.db
+Desktop.ini
