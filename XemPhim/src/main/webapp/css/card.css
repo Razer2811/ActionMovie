@@ -1,27 +1,14 @@
-@charset "ISO-8859-1";
-.btn-watch {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 6px;
-	padding: 6px 12px;
-	width: 100%;
-	background: #d2a106;
-	color: black;
-	font-size: 14px;
-	font-weight: 600;
-	border-radius: 8px;
-	text-decoration: none;
-	transition: all 0.25s ease;
-}
-
-.btn-watch i {
-	font-size: 18px;
-}
-
-.btn-watch:hover {
-	background: #d2a106;
-	color: white;
-	transform: translateY(-1px);
-	box-shadow: 0 4px 12px rgba(46, 164, 79, 0.35);
-}
+.card-film { background: var(--surface); }
+.poster-wrapper { position: relative; display: block; aspect-ratio: 2 / 3; overflow: hidden; }
+.poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+.card-film:hover .poster-wrapper img { transform: scale(1.045); }
+.hover-overlay { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; background: rgba(11,12,13,.4); transition: opacity .25s ease; }
+.card-film:hover .hover-overlay, .card-film:focus-within .hover-overlay { opacity: 1; }
+.hover-overlay i { color: var(--accent); font-size: 3rem; }
+.card-body-custom { padding: 1rem; }
+.movie-title { color: var(--ink); text-decoration: none; }
+.movie-title:hover { color: var(--accent); }
+.movie-meta { color: var(--muted); }
+.meta-item i { color: var(--accent); }
+.btn-watch { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; width: 100%; margin-top: 1rem; padding: .7rem 1rem; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 0; font-size: .9rem; font-weight: 600; text-decoration: none; transition: transform .2s ease, background .2s ease; }
+.btn-watch:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }

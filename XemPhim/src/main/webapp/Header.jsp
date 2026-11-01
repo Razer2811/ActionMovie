@@ -21,7 +21,10 @@
         </div>
 
         <div class="header-right">
-            <nav class="main-menu">
+            <button type="button" class="nav-toggle" aria-label="Mở menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="main-menu" aria-label="Điều hướng chính">
                 <ul>
                     <li><a href="Home">Phim Truyện</a></li>
                     <li><a href="LikeMovie">Phim yêu thích</a></li>
@@ -73,3 +76,15 @@
 
     </div>
 </header>
+<script>
+    (function () {
+        var toggle = document.querySelector('.nav-toggle');
+        var menu = document.querySelector('.main-menu');
+        if (!toggle || !menu) return;
+        toggle.addEventListener('click', function () {
+            var open = menu.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.querySelector('i').className = open ? 'fas fa-xmark' : 'fas fa-bars';
+        });
+    }());
+</script>

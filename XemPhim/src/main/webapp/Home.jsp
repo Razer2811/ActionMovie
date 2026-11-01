@@ -1,124 +1,86 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="modal.Video"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Trang Chủ - Xem Phim Online</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<title>Trang chủ - ActionMovie</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link href="css/card.css" rel="stylesheet">
 <link href="css/chatbot.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="Header.jsp"></jsp:include>
-	<div class="container mt-4">
-		<div class="video-banner-container">
-			<iframe height="500"
-				src="https://www.youtube.com/embed/UiMg566PREA?autoplay=1&mute=1&controls=0&loop=1"
-				frameborder="0" allowfullscreen> </iframe>
-		</div>
-		<h3 class="section-title">Phim Mới Cập Nhật</h3>
-		<div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 g-4">
-			<%
-			ArrayList<Video> dsvideo = (ArrayList<Video>) request.getAttribute("dsvideo");
-			if (dsvideo != null && dsvideo.size() > 0) {
-				for (Video video : dsvideo) {
-			%>
-			<div class="col">
-				<div class="card-film">
-					<a href="DetailMovie?id=<%=video.getId()%>"
-						class="poster-wrapper d-block"> <img
-						src="img/<%=video.getPoster()%>" alt="<%=video.getTitle()%>">
-						<div class="hover-overlay">
-							<i class='bx bx-play-circle'></i>
-						</div>
-					</a>
-					<div class="card-body-custom">
-						<a href="DetailMovie?id=<%=video.getId()%>" class="movie-title"
-							title="<%=video.getTitle()%>"> <%=video.getTitle()%>
-						</a>
-						<div class="movie-meta">
-							<div class="meta-item">
-								<i class='bx bxs-show'></i> <span><%=video.getViews()%></span>
-							</div>
-							<div class="meta-item">
-								<i class='bx bxs-heart'></i> <span><%=video.getTotalFavorites()%></span>
-							</div>
-							<div class="meta-item">
-								<i class='bx bxs-share'></i> <span><%=video.getTotalShares()%></span>
-							</div>
-						</div>
-						<div class="action-buttons">
-							<a href="DetailMovie?id=<%=video.getId()%>" class="btn-watch">
-								<i class='bx bx-play-circle'></i> Xem
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<%
-			}
-			} else {
-			%>
-			<div class="col-12">
-				<div class="alert alert-dark text-center border-secondary"
-					style="background: #161b22; color: #8b949e;">Hiện chưa có
-					phim nào trong danh sách.</div>
-			</div>
-			<%
-			}
-			%>
-		</div>
-		<%
-		Integer totalPagesObj = (Integer) request.getAttribute("totalPages");
-		Integer currentPageObj = (Integer) request.getAttribute("currentPage");
-		int totalPages = (totalPagesObj != null) ? totalPagesObj : 1;
-		int currentPage = (currentPageObj != null) ? currentPageObj : 1;
-		if (totalPages > 1) {
-		%>
-		<div class="d-flex justify-content-center mt-5 mb-5">
-			<nav aria-label="Page navigation">
-				<ul class="pagination pagination-lg">
-					<li class="page-item <%=(currentPage == 1) ? "disabled" : ""%>">
-						<a class="page-link" href="Home?page=<%=currentPage - 1%>"
-						aria-label="Previous"> <i class='bx bx-chevron-left'></i>
-					</a>
-					</li>
-					<%
-					for (int i = 1; i <= totalPages; i++) {
-					%>
-					<li class="page-item <%=(i == currentPage) ? "active" : ""%>">
-						<a class="page-link" href="Home?page=<%=i%>"><%=i%></a>
-					</li>
-					<%
-					}
-					%>
-					<li
-						class="page-item <%=(currentPage == totalPages) ? "disabled" : ""%>">
-						<a class="page-link" href="Home?page=<%=currentPage + 1%>"
-						aria-label="Next"> <i class='bx bx-chevron-right'></i>
-					</a>
-					</li>
-				</ul>
-			</nav>
-		</div>
-		<%
-		}
-		%>
-	</div>
-	<jsp:include page="chatbot.jsp"></jsp:include>
-	<jsp:include page="Footer.jsp"></jsp:include>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="Header.jsp"></jsp:include>
+<main class="container home-shell">
+    <section class="home-hero" aria-labelledby="home-title">
+        <div class="hero-copy">
+            <h1 id="home-title">Stories worth staying for.</h1>
+            <p>Phim chọn lọc, phát trực tuyến từ YouTube — mở một bộ phim và bắt đầu ngay.</p>
+            <div class="hero-actions">
+                <a class="hero-link" href="#new-releases">Xem phim mới <i class="fas fa-arrow-down"></i></a>
+                <a class="hero-link hero-link-secondary" href="GenreVideo">Khám phá thư viện</a>
+            </div>
+        </div>
+        <div class="hero-media">
+            <iframe src="https://www.youtube.com/embed/UiMg566PREA?autoplay=1&amp;mute=1&amp;controls=0&amp;loop=1&amp;playlist=UiMg566PREA"
+                    title="Trailer phim nổi bật" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="new-releases" aria-labelledby="new-releases-title">
+        <div class="section-heading">
+            <h2 id="new-releases-title">Phim mới cập nhật</h2>
+            <p>Những tựa phim vừa được thêm vào kho ActionMovie. Chọn một poster để xem chi tiết.</p>
+        </div>
+        <c:choose>
+            <c:when test="${not empty dsvideo}">
+                <div class="movie-grid">
+                    <c:forEach items="${dsvideo}" var="video">
+                        <article class="movie-card">
+                            <a class="movie-poster" href="DetailMovie?id=${video.id}">
+                                <img src="img/${video.poster}" alt="${video.title}" loading="lazy">
+                                <span class="poster-play" aria-hidden="true"><i class="bx bx-play"></i></span>
+                            </a>
+                            <div class="movie-info">
+                                <a class="movie-title" href="DetailMovie?id=${video.id}" title="${video.title}">${video.title}</a>
+                                <div class="movie-meta">
+                                    <span class="meta-item"><i class="bx bxs-show"></i>${video.views}</span>
+                                    <span class="meta-item"><i class="bx bxs-heart"></i>${video.totalFavorites}</span>
+                                    <span class="meta-item"><i class="bx bxs-share"></i>${video.totalShares}</span>
+                                </div>
+                                <a class="watch-link" href="DetailMovie?id=${video.id}">Xem ngay <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    </c:forEach>
+                </div>
+            </c:when>
+            <c:otherwise><div class="empty-state">Hiện chưa có phim nào trong danh sách.</div></c:otherwise>
+        </c:choose>
+
+        <c:if test="${totalPages > 1}">
+            <nav aria-label="Phân trang phim">
+                <ul class="pagination">
+                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="Home?page=${currentPage - 1}" aria-label="Trang trước"><i class="bx bx-chevron-left"></i></a>
+                    </li>
+                    <c:forEach begin="1" end="${totalPages}" var="page">
+                        <li class="page-item ${page == currentPage ? 'active' : ''}">
+                            <a class="page-link" href="Home?page=${page}">${page}</a>
+                        </li>
+                    </c:forEach>
+                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                        <a class="page-link" href="Home?page=${currentPage + 1}" aria-label="Trang sau"><i class="bx bx-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </c:if>
+    </section>
+</main>
+<jsp:include page="chatbot.jsp"></jsp:include>
+<jsp:include page="Footer.jsp"></jsp:include>
 </body>
 </html>
-chuyển sang JSTL
