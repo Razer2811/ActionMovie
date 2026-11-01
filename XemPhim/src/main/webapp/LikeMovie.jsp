@@ -13,7 +13,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="css/style.css?v=black-gold-1" rel="stylesheet">
 <link href="css/genre.css" rel="stylesheet">
 <link href="css/card.css" rel="stylesheet">
 </head>

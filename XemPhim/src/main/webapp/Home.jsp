@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link href="css/home.css" rel="stylesheet">
+<link href="css/style.css?v=black-gold-2" rel="stylesheet">
+<link href="css/home.css?v=black-gold-2" rel="stylesheet">
 <link href="css/card.css" rel="stylesheet">
 <link href="css/chatbot.css" rel="stylesheet">
 </head>
@@ -18,7 +18,7 @@
 <main class="container home-shell">
     <section class="home-hero" aria-labelledby="home-title">
         <div class="hero-copy">
-            <h1 id="home-title">Stories worth staying for.</h1>
+            <h1 id="home-title">Phim hay, xem ngay.</h1>
             <p>Phim chọn lọc, phát trực tuyến từ YouTube — mở một bộ phim và bắt đầu ngay.</p>
             <div class="hero-actions">
                 <a class="hero-link" href="#new-releases">Xem phim mới <i class="fas fa-arrow-down"></i></a>

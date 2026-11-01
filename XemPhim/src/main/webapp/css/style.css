@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&family=Jost:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@500;600&display=swap&subset=vietnamese');
 
 :root {
     --bg: #0b0c0d;
     --surface: #141618;
     --surface-strong: #1d2022;
-    --ink: #f3f0e9;
+    --ink: #f4f4ef;
     --muted: #a5a9a8;
-    --accent: #ff7654;
-    --accent-ink: #160b08;
-    --sage: #cbd7ce;
+    --accent: #f4c430;
+    --accent-ink: #0b0c0d;
+    --sage: #f1df8b;
     --margin: clamp(1.1rem, 3vw, 3.5rem);
     --gutter: clamp(.85rem, 1.8vw, 1.8rem);
     --display: clamp(3.2rem, 7.4vw, 8.6rem);
@@ -26,7 +26,7 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Jost', 'Segoe UI', sans-serif;
+    font-family: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
     font-size: var(--body);
     line-height: 1.55;
     text-rendering: optimizeLegibility;
@@ -104,6 +104,21 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 .main-menu a:hover, .main-menu a:focus-visible { color: var(--ink); }
 .main-menu > ul > li > a { display: inline-flex; align-items: center; gap: .35rem; }
+.menu-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: .93rem;
+    white-space: nowrap;
+}
+.menu-dropdown-toggle:hover,
+.menu-dropdown-toggle:focus-visible { color: var(--ink); }
 .sub-menu {
     position: absolute;
     top: calc(100% + 1rem);
@@ -114,6 +129,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     background: var(--surface-strong);
 }
 .main-menu li:hover > .sub-menu, .main-menu li:focus-within > .sub-menu { display: grid !important; }
+.main-menu li.is-open > .sub-menu { display: grid !important; }
 .sub-menu a { display: block; padding: .55rem 1rem; }
 .user-greeting { display: inline-flex; align-items: center; gap: .6rem; }
 .my-avatar-img { width: 32px !important; height: 32px !important; border-radius: 50% !important; object-fit: cover !important; }
@@ -160,7 +176,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     .main-menu {
         position: absolute;
         top: calc(100% + 1.25rem);
-        right: 0;
+        right: var(--margin);
         width: min(82vw, 320px);
         padding: 1rem;
         background: var(--surface-strong);

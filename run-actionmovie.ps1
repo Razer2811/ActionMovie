@@ -15,6 +15,8 @@ if (-not (Test-Path (Join-Path $tomcat 'bin\catalina.bat'))) {
 
 $env:JAVA_HOME = $javaHome
 $env:JRE_HOME = $javaHome
+$env:CATALINA_HOME = $tomcat
+$env:CATALINA_BASE = $tomcat
 
 if (Test-Path $deploy) {
     Remove-Item $deploy -Recurse -Force

@@ -31,8 +31,10 @@
                     <li><a href="ShareMovie">Phim chia sẻ</a></li>
 
                     <!-- THỂ LOẠI -->
-                    <li>
-                        <a href="#">Thể loại <i class="fas fa-caret-down"></i></a>
+                    <li class="genre-menu-item">
+                        <button type="button" class="menu-dropdown-toggle" aria-expanded="false">
+                            Thể loại <i class="fas fa-caret-down" aria-hidden="true"></i>
+                        </button>
                         <ul class="sub-menu">
                             <c:forEach items="${dsGenre}" var="g">
                                 <li>
@@ -86,5 +88,16 @@
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
             toggle.querySelector('i').className = open ? 'fas fa-xmark' : 'fas fa-bars';
         });
+
+        var genreItem = document.querySelector('.genre-menu-item');
+        var genreToggle = document.querySelector('.menu-dropdown-toggle');
+        if (genreItem && genreToggle) {
+            genreToggle.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                var open = genreItem.classList.toggle('is-open');
+                genreToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+        }
     }());
 </script>

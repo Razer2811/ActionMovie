@@ -1,0 +1,1400 @@
+{
+ "url": "http://localhost:8080/XemPhim/Home?theme=black-gold-2",
+ "at": "2026-11-01T17:24:56.036Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.69,
+    0.82,
+    0.86
+   ],
+   "motion": {
+    "elements": 5,
+    "css": 5,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2271,
+     "screens": 2.5,
+     "words": 178,
+     "img": 7,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "datrungphuongnam.webp",
+      "benhvienma.jpg",
+      "fairytail.jpg",
+      "cuocxamlang.jpg",
+      "logo2.png"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Phim hay, xem ngay.",
+     "words": 4,
+     "chars": 19,
+     "lines": 2,
+     "size": 72,
+     "vw": 5,
+     "font": "Noto Serif",
+     "weight": 500,
+     "tracking": -0.035,
+     "leading": 0.9,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.23,
+     "top": 337,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Phim hay, xem ngay.",
+     "words": 4,
+     "lines": 2,
+     "size": 72,
+     "font": "Noto Serif"
+    },
+    "headings": [
+     {
+      "text": "Phim hay, xem ngay.",
+      "words": 4,
+      "chars": 19,
+      "lines": 2,
+      "size": 72,
+      "vw": 5,
+      "font": "Noto Serif",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 337,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Phim mới cập nhật",
+      "words": 4,
+      "chars": 17,
+      "lines": 1,
+      "size": 54.7,
+      "vw": 3.8,
+      "font": "Noto Serif",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 0.98,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.33,
+      "top": 912,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Noto Sans",
+       "share": 0.95,
+       "mono": false
+      },
+      {
+       "family": "Noto Serif",
+       "share": 0.05,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      15,
+      17,
+      18,
+      55,
+      72
+     ],
+     "sizeCount": 6,
+     "notLoaded": [],
+     "body": {
+      "font": "Noto Sans",
+      "size": 17.6,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8.2
+     },
+     "measureChars": 66,
+     "max": {
+      "size": 72,
+      "vw": 5,
+      "font": "Noto Serif",
+      "text": "Phim hay, xem ngay."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#0b0c0d",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.08,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#141618",
+       "top": 240,
+       "hsl": {
+        "h": 210,
+        "s": 0.09,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#000000",
+       "top": 240,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0
+       }
+      },
+      {
+       "color": "#070808",
+       "top": 1742,
+       "hsl": {
+        "h": 180,
+        "s": 0.07,
+        "l": 0.03
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a5a9a8",
+       "share": 0.73
+      },
+      {
+       "color": "#f4f4ef",
+       "share": 0.15
+      },
+      {
+       "color": "#f4c430",
+       "share": 0.07
+      },
+      {
+       "color": "#777d7b",
+       "share": 0.03
+      },
+      {
+       "color": "#101514",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#0b0c0d",
+      "hsl": {
+       "h": 210,
+       "s": 0.08,
+       "l": 0.05
+      },
+      "fg": "#f4f4ef"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Xem phim mới",
+      "Khám phá thư viện"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 1,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1006
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "iframe",
+      "ratio": 0.35
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": true,
+     "height": 168,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "font awesome 6 brands",
+     "font awesome 6 free",
+     "boxicons",
+     "noto sans",
+     "noto serif"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2271,
+    "margins": {
+     "left": 43,
+     "right": 43
+    },
+    "sections": [
+     {
+      "sel": "header.site-header",
+      "tag": "header",
+      "top": 0,
+      "height": 168,
+      "words": 14,
+      "media": 0,
+      "middle": 241,
+      "heading": null,
+      "left": 43,
+      "right": 43,
+      "textLeft": 806,
+      "textRight": 43,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "section.home-hero",
+      "tag": "section",
+      "top": 240,
+      "height": 500,
+      "words": 26,
+      "media": 1,
+      "middle": 65,
+      "heading": {
+       "text": "Phim hay, xem ngay.",
+       "size": 72,
+       "tag": "h1"
+      },
+      "left": 101,
+      "right": 43,
+      "textLeft": 101,
+      "textRight": 1013,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#new-releases",
+      "tag": "section",
+      "top": 884,
+      "height": 730,
+      "words": 43,
+      "media": 4,
+      "middle": 26,
+      "heading": {
+       "text": "Phim mới cập nhật",
+       "size": 55,
+       "tag": "h2"
+      },
+      "left": 43,
+      "right": 43,
+      "textLeft": 43,
+      "textRight": 44,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 1742,
+      "height": 529,
+      "words": 74,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 43,
+      "right": 814,
+      "textLeft": 43,
+      "textRight": 814,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Phim hay, xem ngay.",
+      "size": 72,
+      "top": 337,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 101,
+      "n": 2
+     },
+     {
+      "x": 43,
+      "n": 1
+     },
+     {
+      "x": 1085,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 4,
+    "bodySize": 18,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.11,
+    "voidBox": {
+     "x": 240,
+     "y": 120,
+     "w": 1200,
+     "h": 120
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.81,
+    0.69,
+    0.84
+   ],
+   "motion": {
+    "elements": 5,
+    "css": 5,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2865,
+     "screens": 2.8,
+     "words": 164,
+     "img": 7,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "datrungphuongnam.webp",
+      "benhvienma.jpg",
+      "fairytail.jpg",
+      "cuocxamlang.jpg",
+      "logo2.png"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Phim hay, xem ngay.",
+     "words": 4,
+     "chars": 19,
+     "lines": 2,
+     "size": 44.8,
+     "vw": 5.8,
+     "font": "Noto Serif",
+     "weight": 500,
+     "tracking": -0.035,
+     "leading": 0.9,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.29,
+     "top": 276,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Phim hay, xem ngay.",
+     "words": 4,
+     "lines": 2,
+     "size": 44.8,
+     "font": "Noto Serif"
+    },
+    "headings": [
+     {
+      "text": "Phim hay, xem ngay.",
+      "words": 4,
+      "chars": 19,
+      "lines": 2,
+      "size": 44.8,
+      "vw": 5.8,
+      "font": "Noto Serif",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.29,
+      "top": 276,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Phim mới cập nhật",
+      "words": 4,
+      "chars": 17,
+      "lines": 1,
+      "size": 32,
+      "vw": 4.2,
+      "font": "Noto Serif",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 0.98,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 1113,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Noto Sans",
+       "share": 0.95,
+       "mono": false
+      },
+      {
+       "family": "Noto Serif",
+       "share": 0.05,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      17,
+      32,
+      45
+     ],
+     "sizeCount": 4,
+     "notLoaded": [],
+     "body": {
+      "font": "Noto Sans",
+      "size": 16.8,
+      "leading": 1.45,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8
+     },
+     "measureChars": 66,
+     "max": {
+      "size": 44.8,
+      "vw": 5.8,
+      "font": "Noto Serif",
+      "text": "Phim hay, xem ngay."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#0b0c0d",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.08,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#141618",
+       "top": 244,
+       "hsl": {
+        "h": 210,
+        "s": 0.09,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#000000",
+       "top": 566,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0
+       }
+      },
+      {
+       "color": "#070808",
+       "top": 2280,
+       "hsl": {
+        "h": 180,
+        "s": 0.07,
+        "l": 0.03
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#a5a9a8",
+       "share": 0.7
+      },
+      {
+       "color": "#f4f4ef",
+       "share": 0.17
+      },
+      {
+       "color": "#f4c430",
+       "share": 0.07
+      },
+      {
+       "color": "#777d7b",
+       "share": 0.03
+      },
+      {
+       "color": "#101514",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#0b0c0d",
+      "hsl": {
+       "h": 210,
+       "s": 0.08,
+       "l": 0.05
+      },
+      "fg": "#f4f4ef"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Xem phim mới",
+      "Khám phá thư viện"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 1,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1184
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "iframe",
+      "ratio": 0.39
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": true,
+     "height": 206,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "font awesome 6 brands",
+     "font awesome 6 free",
+     "boxicons",
+     "noto sans",
+     "noto serif"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2865,
+    "margins": {
+     "left": 23,
+     "right": 23
+    },
+    "sections": [
+     {
+      "sel": "header.site-header",
+      "tag": "header",
+      "top": 0,
+      "height": 206,
+      "words": 0,
+      "media": 0,
+      "middle": 29,
+      "heading": null,
+      "left": 23,
+      "right": 23,
+      "textLeft": null,
+      "textRight": null,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "section.home-hero",
+      "tag": "section",
+      "top": 244,
+      "height": 742,
+      "words": 26,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Phim hay, xem ngay.",
+       "size": 45,
+       "tag": "h1"
+      },
+      "left": 23,
+      "right": 23,
+      "textLeft": 55,
+      "textRight": 402,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#new-releases",
+      "tag": "section",
+      "top": 1066,
+      "height": 1086,
+      "words": 43,
+      "media": 4,
+      "middle": 0,
+      "heading": {
+       "text": "Phim mới cập nhật",
+       "size": 32,
+       "tag": "h2"
+      },
+      "left": 23,
+      "right": 23,
+      "textLeft": 23,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2280,
+      "height": 585,
+      "words": 74,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 23,
+      "right": 185,
+      "textLeft": 23,
+      "textRight": 185,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Phim hay, xem ngay.",
+      "size": 45,
+      "top": 276,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 55,
+      "n": 2
+     },
+     {
+      "x": 23,
+      "n": 1
+     },
+     {
+      "x": 445,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 4,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "motion": {
+    "elements": 5,
+    "css": 5,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1005,
+     "h": 2175
+    },
+    "page": {
+     "height": 2175,
+     "screens": 1,
+     "words": 178,
+     "img": 7,
+     "video": 0,
+     "canvas": 0,
+     "svg": 0,
+     "sections": 2,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "datrungphuongnam.webp",
+      "benhvienma.jpg",
+      "fairytail.jpg",
+      "cuocxamlang.jpg",
+      "logo2.png"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Phim hay, xem ngay.",
+     "words": 4,
+     "chars": 19,
+     "lines": 2,
+     "size": 49,
+     "vw": 4.9,
+     "font": "Noto Serif",
+     "weight": 500,
+     "tracking": -0.035,
+     "leading": 0.9,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.23,
+     "top": 305,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Phim hay, xem ngay.",
+     "words": 4,
+     "lines": 2,
+     "size": 49,
+     "font": "Noto Serif"
+    },
+    "headings": [
+     {
+      "text": "Phim hay, xem ngay.",
+      "words": 4,
+      "chars": 19,
+      "lines": 2,
+      "size": 49,
+      "vw": 4.9,
+      "font": "Noto Serif",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 0.9,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.23,
+      "top": 305,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Phim mới cập nhật",
+      "words": 4,
+      "chars": 17,
+      "lines": 1,
+      "size": 37.2,
+      "vw": 3.7,
+      "font": "Noto Serif",
+      "weight": 500,
+      "tracking": -0.035,
+      "leading": 0.98,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.32,
+      "top": 859,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Noto Sans",
+       "share": 0.95,
+       "mono": false
+      },
+      {
+       "family": "Noto Serif",
+       "share": 0.05,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      15,
+      17,
+      37,
+      49
+     ],
+     "sizeCount": 5,
+     "notLoaded": [],
+     "body": {
+      "font": "Noto Sans",
+      "size": 16.8,
+      "leading": 1.45,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 8
+     },
+     "measureChars": 66,
+     "max": {
+      "size": 49,
+      "vw": 4.9,
+      "font": "Noto Serif",
+      "text": "Phim hay, xem ngay."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#0b0c0d",
+     "bodyBgHsl": {
+      "h": 210,
+      "s": 0.08,
+      "l": 0.05
+     },
+     "dark": true,
+     "sectionBgs": [],
+     "textColors": [
+      {
+       "color": "#a5a9a8",
+       "share": 0.73
+      },
+      {
+       "color": "#f4f4ef",
+       "share": 0.15
+      },
+      {
+       "color": "#f4c430",
+       "share": 0.07
+      },
+      {
+       "color": "#777d7b",
+       "share": 0.03
+      },
+      {
+       "color": "#101514",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#0b0c0d",
+      "hsl": {
+       "h": 210,
+       "s": 0.08,
+       "l": 0.05
+      },
+      "fg": "#f4f4ef"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 2,
+     "inHero": 2,
+     "radius": 0,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Xem phim mới",
+      "Khám phá thư viện"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 1,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 4,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 936
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "iframe",
+      "ratio": 0.14
+     }
+    ],
+    "nav": {
+     "links": 6,
+     "fixed": true,
+     "height": 168,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "font awesome 6 brands",
+     "font awesome 6 free",
+     "boxicons",
+     "noto sans",
+     "noto serif"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1005,
+     "h": 2175
+    },
+    "pageH": 2175,
+    "margins": {
+     "left": 29,
+     "right": 54
+    },
+    "sections": [
+     {
+      "sel": "header.site-header",
+      "tag": "header",
+      "top": 0,
+      "height": 168,
+      "words": 14,
+      "media": 0,
+      "middle": 29,
+      "heading": null,
+      "left": 29,
+      "right": 0,
+      "textLeft": 458,
+      "textRight": 0,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": true
+     },
+     {
+      "sel": "main.container.home-shell",
+      "tag": "main",
+      "top": 168,
+      "height": 1223,
+      "words": 69,
+      "media": 5,
+      "middle": 0,
+      "heading": {
+       "text": "Phim hay, xem ngay.",
+       "size": 49,
+       "tag": "h1"
+      },
+      "left": 29,
+      "right": 54,
+      "textLeft": 29,
+      "textRight": 55,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 1519,
+      "height": 527,
+      "words": 74,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 29,
+      "right": 402,
+      "textLeft": 29,
+      "textRight": 402,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Phim hay, xem ngay.",
+      "size": 49,
+      "top": 305,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Đăng ký",
+      "side": "right",
+      "px": 0
+     }
+    ],
+    "edges": [
+     {
+      "x": 69,
+      "n": 2
+     },
+     {
+      "x": 29,
+      "n": 1
+     },
+     {
+      "x": 644,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 4,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.13,
+    "voidBox": {
+     "x": 628,
+     "y": 1450,
+     "w": 377,
+     "h": 725
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (text #f4f4ef).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "font-not-dealt",
+   "width": 1440,
+   "message": "The sheet dealt Bodoni Moda and Jost, but the page renders Noto Sans, Noto Serif.",
+   "fix": "Load the dealt face (the link on the sheet) and put it first in font-family. A build that falls back to a default face lands on the default look."
+  },
+  {
+   "level": "FAIL",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Only 5 element(s) moved while the page loaded and scrolled.",
+   "fix": "Build the motion layer (SKILL.md step 9, references/motion.md): the signature move, an entrance for the parts of every section, feedback on every control, and one moving picture. Transform and opacity only, with a reduced-motion fallback."
+  },
+  {
+   "level": "FAIL",
+   "id": "covered-text",
+   "width": 768,
+   "message": "Large text lies under another element at some scroll position: \"Phim mới cập nhật\" (screen 2, 100% hidden)",
+   "fix": "Nothing may sit on top of a headline or statement. Move the picture, shorten the pinned run, or raise the text above it (z-index) and give it a ground."
+  },
+  {
+   "level": "FAIL",
+   "id": "off-centre",
+   "width": 390,
+   "message": "The page sits off-centre: its content comes to 29px from the left edge but only to 54px from the right, at 390px.",
+   "fix": "Give the page one pair of equal margins. Check the wrapper for a max-width without margin-inline: auto, a grid with an empty last column, or padding on one side only. If one side is meant to hold air, it must still be closed by something that reaches the margin (a picture, the navigation's last item, a figure)."
+  },
+  {
+   "level": "FAIL",
+   "id": "edge-text",
+   "width": 390,
+   "message": "1 text block(s) sit within 12px of the screen edge: \"Đăng ký\" (0px from the right)",
+   "fix": "Keep text inside the page margin (16–20px). Only display type deliberately bled past the edge may touch it."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "D:\\ActionMovie\\.taste-skill\\after-black-gold-2\\desktop-fold.jpg",
+   "pages": [
+    "D:\\ActionMovie\\.taste-skill\\after-black-gold-2\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "D:\\ActionMovie\\.taste-skill\\after-black-gold-2\\tablet-fold.jpg",
+   "pages": [
+    "D:\\ActionMovie\\.taste-skill\\after-black-gold-2\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "D:\\ActionMovie\\.taste-skill\\after-black-gold-2\\mobile-fold.jpg",
+   "pages": [
+    "D:\\ActionMovie\\.taste-skill\\after-black-gold-2\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

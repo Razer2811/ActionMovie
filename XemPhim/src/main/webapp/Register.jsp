@@ -11,7 +11,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 	rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="css/style.css?v=black-gold-1" rel="stylesheet">
 <link href="css/register.css" rel="stylesheet">
 </head>
 <body>
